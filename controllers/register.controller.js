@@ -8,13 +8,16 @@ router.get('/', function (req, res) {
 });
 
 router.post('/', function (req, res) {
+    console.log(JSON.stringify(req.body));
     // register using api to maintain clean separation between layers
     request.post({
         url: config.apiUrl + '/users/register',
         form: req.body,
         json: true
     }, function (error, response, body) {
+        debugger;
         if (error) {
+            console.log(error);
             return res.render('register', { error: 'An error occurred' });
         }
 
